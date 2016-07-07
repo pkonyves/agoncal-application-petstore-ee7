@@ -15,6 +15,7 @@ import javax.inject.Named;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Antonio Goncalves
@@ -125,5 +126,9 @@ public class AccountBean extends AbstractBean implements Serializable {
 
     public void setLoggedinCustomer(Customer loggedinCustomer) {
         this.loggedinCustomer = loggedinCustomer;
+    }
+    
+    public List<Customer> getAllCustomers() {
+    	return customerService.findAllCustomers();
     }
 }

@@ -36,6 +36,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <!-- Ghostwriter -->
+    <version.ghostwriter>0.1.1</version.ghostwriter>
   </properties>
 
   <dependencyManagement>
@@ -100,6 +102,18 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+	<dependency>
+	    <groupId>io.ghostwriter</groupId>
+	    <artifactId>ghostwriter-openjdk-v7</artifactId>
+	    <version>${version.ghostwriter}</version>
+	    <scope>compile</scope>
+	</dependency>
+	<dependency>
+	    <groupId>io.ghostwriter</groupId>
+	    <artifactId>ghostwriter-rt-snaperr</artifactId>
+	    <version>${version.ghostwriter}</version>
+	    <scope>runtime</scope>
+	</dependency>
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
       <artifactId>arquillian-junit-container</artifactId>
@@ -154,6 +168,28 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
+	 <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-compiler-plugin</artifactId>
+             <version>3.3</version>
+             <executions>
+                 <execution>
+                     <id>default-compile</id>
+                     <phase>compile</phase>
+                     <goals>
+                         <goal>compile</goal>
+                     </goals>
+                     <configuration>
+<annotationProcessors>
+                             <annotationProcessor>io.ghostwriter.openjdk.v7.GhostWriterAnnotationProcessor</annotationProcessor>
+                         </annotationProcessors>
+                         <source>1.7</source>
+                         <target>1.7</target>
+			<verbose>true</verbose>
+                     </configuration>
+                 </execution>
+             </executions>
+        </plugin>
     </plugins>
   </build>
   <profiles>
